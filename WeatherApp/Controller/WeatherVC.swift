@@ -14,22 +14,47 @@ class WeatherVC: UIViewController {
     @IBOutlet weak var imageView:             UIImageView!
     @IBOutlet weak var todayAndWeeklyControl: UISegmentedControl!
     @IBOutlet weak var collectionVIew:        UICollectionView!
+    @IBOutlet weak var refreshButton:         UIButton!
+    @IBOutlet weak var temperatureLabel:      UILabel!
+    
+    
+    let dateFormatter = DateFormatter()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        collectionVIew.delegate   = self
+        collectionVIew.dataSource = self
+        
+        setTime()
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func refreshButtonTapped(_ sender: UIButton) {
+        
     }
-    */
+    
+   
+    
+    func setTime() {
+        dateFormatter.dateStyle = .medium
+        todaysDateLabel.text = dateFormatter.string(from: Date())
+    }
+    
+}
 
+extension WeatherVC: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return WeatherData.array.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell {
+            cell.updateCell(weatherData: WeatherData.array[indexPath.row])
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+    
+    
 }
