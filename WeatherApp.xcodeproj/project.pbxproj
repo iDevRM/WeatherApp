@@ -99,9 +99,11 @@
 		1DD558282566E67D008F74DB /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				1DD5585C2566E757008F74DB /* Model */,
+				1DD5585D2566E75E008F74DB /* View */,
+				1DD5585E2566E765008F74DB /* Controller */,
 				1DD558292566E67D008F74DB /* AppDelegate.swift */,
 				1DD5582B2566E67D008F74DB /* SceneDelegate.swift */,
-				1DD5582D2566E67D008F74DB /* ViewController.swift */,
 				1DD5582F2566E67D008F74DB /* Main.storyboard */,
 				1DD558322566E67E008F74DB /* Assets.xcassets */,
 				1DD558342566E67E008F74DB /* LaunchScreen.storyboard */,
@@ -126,6 +128,28 @@
 				1DD5584D2566E67E008F74DB /* Info.plist */,
 			);
 			path = WeatherAppUITests;
+			sourceTree = "<group>";
+		};
+		1DD5585C2566E757008F74DB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1DD5585D2566E75E008F74DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1DD5585E2566E765008F74DB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1DD5582D2566E67D008F74DB /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

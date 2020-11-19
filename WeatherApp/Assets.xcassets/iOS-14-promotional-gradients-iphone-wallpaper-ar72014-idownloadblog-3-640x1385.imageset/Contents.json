@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "iOS-14-promotional-gradients-iphone-wallpaper-ar72014-idownloadblog-3-640x1385.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "iOS-14-promotional-gradients-iphone-wallpaper-ar72014-idownloadblog-3-640x1385-1.jpeg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "iOS-14-promotional-gradients-iphone-wallpaper-ar72014-idownloadblog-3-640x1385-2.jpeg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
