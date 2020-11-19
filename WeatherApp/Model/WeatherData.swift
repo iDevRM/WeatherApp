@@ -14,5 +14,5 @@ struct WeatherData {
    let temperature: String?
    let image:       UIImage?
     
-    static var array: [WeatherData] = [WeatherData(date: "10:00", location: nil, description: nil, temperature: "75 °F", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75 °F", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75 °F", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75 °F", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75 °F", image: WeatherImages.sunny )]
+    static var array: [WeatherData] = [WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny )]
 }

@@ -15,7 +15,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     func updateCell(weatherData: WeatherData) {
         topLabel.text    = weatherData.date
         imageView.image  = weatherData.image
-        bottomLabel.text = weatherData.temperature
+        bottomLabel.text = "\(weatherData.temperature!) °F"
     }
     
 }

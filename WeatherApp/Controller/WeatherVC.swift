@@ -34,8 +34,6 @@ class WeatherVC: UIViewController {
         
     }
     
-   
-    
     func setTime() {
         dateFormatter.dateStyle = .medium
         todaysDateLabel.text = dateFormatter.string(from: Date())
