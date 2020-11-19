@@ -12,10 +12,10 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView:   UIImageView!
     @IBOutlet weak var bottomLabel: UILabel!
     
-    func updateCell(weatherData: WeatherData?) {
-        topLabel.text    = weatherData?.date
-        imageView.image  = UIImage(named: weatherData?.image ?? "Error")
-        bottomLabel.text = weatherData?.temperature
+    func updateCell(weatherData: WeatherData) {
+        topLabel.text    = weatherData.date
+        imageView.image  = weatherData.image
+        bottomLabel.text = weatherData.temperature
     }
     
 }

@@ -17,6 +17,7 @@
 		1DD5586B2566F8EF008F74DB /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD5586A2566F8EF008F74DB /* WeatherCollectionViewCell.swift */; };
 		1DD558732566F984008F74DB /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD558722566F984008F74DB /* WeatherVC.swift */; };
 		1DD55878256700E5008F74DB /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD55877256700E5008F74DB /* WeatherData.swift */; };
+		1DD5587E256712BF008F74DB /* WeatherImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD5587D256712BF008F74DB /* WeatherImages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		1DD5586A2566F8EF008F74DB /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		1DD558722566F984008F74DB /* WeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVC.swift; sourceTree = "<group>"; };
 		1DD55877256700E5008F74DB /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		1DD5587D256712BF008F74DB /* WeatherImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherImages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				1DD55877256700E5008F74DB /* WeatherData.swift */,
+				1DD5587D256712BF008F74DB /* WeatherImages.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			files = (
 				1DD5586B2566F8EF008F74DB /* WeatherCollectionViewCell.swift in Sources */,
 				1DD55878256700E5008F74DB /* WeatherData.swift in Sources */,
+				1DD5587E256712BF008F74DB /* WeatherImages.swift in Sources */,
 				1DD5582A2566E67D008F74DB /* AppDelegate.swift in Sources */,
 				1DD5582C2566E67D008F74DB /* SceneDelegate.swift in Sources */,
 				1DD558732566F984008F74DB /* WeatherVC.swift in Sources */,

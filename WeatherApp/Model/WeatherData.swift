@@ -7,12 +7,12 @@
 
 import UIKit
 
-struct WeatherData: Codable {
+struct WeatherData {
    let date:        String?
    let location:    String?
    let description: String?
    let temperature: String?
-   let image:       String?
+   let image:       UIImage?
     
-   static var array: [WeatherData] = []
+    static var array: [WeatherData] = [WeatherData(date: "10:00", location: nil, description: nil, temperature: "75 °F", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75 °F", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75 °F", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75 °F", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75 °F", image: WeatherImages.sunny )]
 }
