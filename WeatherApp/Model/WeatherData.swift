@@ -7,12 +7,22 @@
 
 import UIKit
 
-struct WeatherData {
-   let date:        String?
-   let location:    String?
-   let description: String?
-   let temperature: String?
-   let image:       UIImage?
+struct WeatherData: Decodable {
     
-    static var array: [WeatherData] = [WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny )]
+//    let date:        String?
+//    let location:    String?
+//    let description: String?
+//    let temperature: String?
+//    let image:       UIImage?
+//
+//
+//
+//    static var array: [WeatherData] = [WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny )]
+    
+    let name: String
+    let main: Main
+}
+
+struct Main: Decodable {
+    let temp: Double
 }

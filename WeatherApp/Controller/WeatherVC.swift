@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class WeatherVC: UIViewController {
     @IBOutlet weak var todaysDateLabel:       UILabel!
@@ -18,11 +19,18 @@ class WeatherVC: UIViewController {
     @IBOutlet weak var temperatureLabel:      UILabel!
     
     
-    let dateFormatter = DateFormatter()
+    let dateFormatter   = DateFormatter()
+    let networkService  = NetworkService()
+    let locationManager = CLLocationManager()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
+        
+        
         collectionVIew.delegate   = self
         collectionVIew.dataSource = self
         
@@ -31,7 +39,7 @@ class WeatherVC: UIViewController {
     }
     
     @IBAction func refreshButtonTapped(_ sender: UIButton) {
-        
+        locationManager.requestLocation()
     }
     
     func setTime() {
@@ -48,11 +56,30 @@ extension WeatherVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell {
-            cell.updateCell(weatherData: WeatherData.array[indexPath.row])
+//            cell.updateCell(weatherData: WeatherData.array[indexPath.row])
             return cell
         }
         return UICollectionViewCell()
     }
     
     
+}
+
+//MARK: - CLLocationManagerDelegate
+
+extension WeatherVC: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        var long: Double {
+            return locations[0].coordinate.longitude
+        }
+        var lat : Double {
+            return locations[0].coordinate.latitude
+        }
+        
+        networkService.fetchWeather(lat: lat, long: long)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+       
+    }
 }
