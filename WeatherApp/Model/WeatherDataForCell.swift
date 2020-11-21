@@ -8,12 +8,27 @@
 import UIKit
 
 struct WeatherDataForCell: Decodable {
-    let current: Temp
-    let hourly : [Hourly]
+    let hourly : [Weather]
     let daily  : [Daily]
 }
+
+struct Weather: Decodable {
+    let temp: Double
+    let weather: [ID]
+}
+
+struct ID: Decodable {
+    let id: Int
+}
+
+
+
 struct CellArray {
-    static var array: [WeatherDataForCell] = []
+    let hour       : String
+    let id         : Int
+    let temp       : Double
+    
+    static var array: [CellArray] = []
  }
 
 struct WeatherData: Decodable {
@@ -21,10 +36,10 @@ struct WeatherData: Decodable {
     let main: Main
     let name: String
 }
-struct Weather: Decodable {
-    let description: String
-    let id: Int
-}
+
+
+
+
 struct Main: Decodable {
     let temp: Double
 }

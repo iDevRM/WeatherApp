@@ -29,7 +29,7 @@ class WeatherVC: UIViewController {
         super.viewDidLoad()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        
+        locationManager.requestLocation()
         
         
         collectionView.delegate   = self
@@ -41,7 +41,8 @@ class WeatherVC: UIViewController {
     
     @IBAction func refreshButtonTapped(_ sender: UIButton) {
         locationManager.requestLocation()
-        
+        collectionView.reloadData()
+        print(CellArray.array.count)
     }
     
     func setTime() {
@@ -53,12 +54,12 @@ class WeatherVC: UIViewController {
 
 extension WeatherVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return CellArray.array.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell {
-//            cell.updateCell(weatherData: )
+            cell.updateCell(weatherData: CellArray.array[indexPath.row])
             return cell
         }
         return UICollectionViewCell()
