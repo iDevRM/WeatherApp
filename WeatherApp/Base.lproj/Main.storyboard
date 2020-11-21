@@ -38,9 +38,6 @@
                             </imageView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2OR-cm-xS1">
                                 <rect key="frame" x="72" y="624.66666666666663" width="270" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="270" id="NCK-sk-6Al"/>
-                                </constraints>
                                 <segments>
                                     <segment title="Today"/>
                                     <segment title="Weekly"/>
@@ -152,14 +149,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="2OR-cm-xS1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="72" id="2Hs-4q-xdl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tjQ-aq-NSW" secondAttribute="trailing" constant="150.33000000000001" id="6Sh-44-n8d"/>
                             <constraint firstItem="69P-9C-7Ux" firstAttribute="top" secondItem="j9i-21-MFz" secondAttribute="bottom" constant="41" id="96o-6E-jgn"/>
                             <constraint firstItem="EiE-TX-BMT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="9to-V1-kpd"/>
                             <constraint firstItem="tjQ-aq-NSW" firstAttribute="top" secondItem="j9i-21-MFz" secondAttribute="bottom" constant="107.67" id="A4U-md-0Fh"/>
                             <constraint firstItem="2OR-cm-xS1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Crs-EK-UdB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="09Q-BM-WNA" secondAttribute="bottom" constant="25" id="D3S-OJ-EA9"/>
-                            <constraint firstItem="tjQ-aq-NSW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="150.33000000000001" id="I0L-cD-zEy"/>
                             <constraint firstItem="09Q-BM-WNA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="IrH-ZB-ujS"/>
                             <constraint firstItem="EiE-TX-BMT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Jhk-C6-L1H"/>
                             <constraint firstItem="vG1-af-hBi" firstAttribute="top" secondItem="tjQ-aq-NSW" secondAttribute="bottom" constant="8.3300000000000001" id="KGG-FD-YFq"/>
@@ -169,7 +164,6 @@
                             <constraint firstItem="EiE-TX-BMT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ThP-Vf-CZX"/>
                             <constraint firstItem="TdF-VK-Xve" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="UJH-Hi-7G5"/>
                             <constraint firstItem="arI-io-t48" firstAttribute="top" secondItem="vG1-af-hBi" secondAttribute="bottom" constant="1.6699999999999999" id="UlD-Ic-Gh9"/>
-                            <constraint firstItem="j9i-21-MFz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="129.66999999999999" id="Ym1-Ni-7UE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TdF-VK-Xve" secondAttribute="trailing" constant="29.329999999999998" id="brO-b1-Wm6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="arI-io-t48" secondAttribute="trailing" constant="126" id="cZr-q8-eLm"/>
                             <constraint firstItem="69P-9C-7Ux" firstAttribute="top" secondItem="j9i-21-MFz" secondAttribute="bottom" constant="20" id="cpt-M3-f2L"/>
@@ -200,7 +194,7 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="collectionVIew" destination="09Q-BM-WNA" id="nSv-V4-MVE"/>
+                        <outlet property="collectionView" destination="09Q-BM-WNA" id="CB8-vu-i40"/>
                         <outlet property="imageView" destination="vG1-af-hBi" id="I1t-IF-yK7"/>
                         <outlet property="locationLabel" destination="69P-9C-7Ux" id="cPg-vq-Pri"/>
                         <outlet property="refreshButton" destination="TdF-VK-Xve" id="YeL-r4-N0L"/>

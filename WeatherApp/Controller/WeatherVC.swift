@@ -14,7 +14,8 @@ class WeatherVC: UIViewController {
     @IBOutlet weak var weatherLabel:          UILabel!
     @IBOutlet weak var imageView:             UIImageView!
     @IBOutlet weak var todayAndWeeklyControl: UISegmentedControl!
-    @IBOutlet weak var collectionVIew:        UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     @IBOutlet weak var refreshButton:         UIButton!
     @IBOutlet weak var temperatureLabel:      UILabel!
     
@@ -31,8 +32,8 @@ class WeatherVC: UIViewController {
         
         
         
-        collectionVIew.delegate   = self
-        collectionVIew.dataSource = self
+        collectionView.delegate   = self
+        collectionView.dataSource = self
         
         setTime()
         
@@ -40,6 +41,7 @@ class WeatherVC: UIViewController {
     
     @IBAction func refreshButtonTapped(_ sender: UIButton) {
         locationManager.requestLocation()
+        
     }
     
     func setTime() {
@@ -56,7 +58,7 @@ extension WeatherVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell {
-//            cell.updateCell(weatherData: WeatherData.array[indexPath.row])
+//            cell.updateCell(weatherData: )
             return cell
         }
         return UICollectionViewCell()

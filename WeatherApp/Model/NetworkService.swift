@@ -9,7 +9,13 @@ import Foundation
 
 
 struct NetworkService {
-    let URL_Weather = "https://api.openweathermap.org/data/2.5/onecall?units=imperial&appid=0f087dcd4dda0e949be5313b2b84ed7f"
+    let URL_WeatherForCell = "https://api.openweathermap.org/data/2.5/onecall?units=imperial&appid=0f087dcd4dda0e949be5313b2b84ed7f"
+    let URL_Weather = "https://api.openweathermap.org/data/2.5/weather?appid=0f087dcd4dda0e949be5313b2b84ed7f&units=imperial"
+    
+    func fetchWeatherForCell(lat: Double, long: Double) {
+        let urlString = "\(URL_WeatherForCell)&lat=\(lat)&lon=\(long)"
+        performRequest(urlString: urlString)
+    }
     
     func fetchWeather(lat: Double, long: Double) {
         let urlString = "\(URL_Weather)&lat=\(lat)&lon=\(long)"
@@ -43,7 +49,11 @@ struct NetworkService {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
-            print(decodedData.current.temp)
+            print(decodedData.weather[0].description)
+            print(decodedData.weather[0].id)
+            print(decodedData.main.temp)
+            print(decodedData.name)
+            
         } catch {
             print(error)
         }
