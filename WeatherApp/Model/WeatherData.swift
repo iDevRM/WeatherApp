@@ -19,10 +19,10 @@ struct WeatherData: Decodable {
 //
 //    static var array: [WeatherData] = [WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny ),WeatherData(date: "10:00", location: nil, description: nil, temperature: "75", image: WeatherImages.sunny )]
     
-    let name: String
-    let main: Main
+    let current: Temp
 }
 
-struct Main: Decodable {
+struct Temp: Decodable {
     let temp: Double
 }
+
