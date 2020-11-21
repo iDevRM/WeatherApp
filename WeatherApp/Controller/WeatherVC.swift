@@ -79,7 +79,7 @@ extension WeatherVC: CLLocationManagerDelegate {
             return locations[0].coordinate.latitude
         }
         
-        networkService.fetchWeather(lat: lat, long: long)
+        networkService.fetchWeatherForCell(lat: lat, long: long)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

@@ -48,46 +48,50 @@
                                 <rect key="frame" x="20" y="680.66666666666663" width="374" height="156.33333333333337"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cML-Qu-xCc">
-                                    <size key="itemSize" width="65" height="122"/>
+                                    <size key="itemSize" width="61" height="146.00000000000003"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="weatherCell" id="7cm-iK-0nL" customClass="WeatherCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="17.333333333333332" width="65" height="122"/>
+                                        <rect key="frame" x="0.0" y="5.333333333333333" width="66" height="146"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6ce-sv-2se">
-                                            <rect key="frame" x="0.0" y="0.0" width="65" height="122"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="66" height="146"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uwV-H8-qLX">
-                                                    <rect key="frame" x="8" y="8" width="49" height="106"/>
+                                                    <rect key="frame" x="8" y="8" width="50" height="130"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="k3x-ac-VaZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="49" height="32"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2ed-Hb-bFN">
-                                                            <rect key="frame" x="0.0" y="37" width="49" height="32"/>
+                                                            <rect key="frame" x="0.0" y="45" width="50" height="40"/>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="2ed-Hb-bFN" secondAttribute="height" id="hfp-7N-NlE"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="aIS-QZ-bWS">
-                                                            <rect key="frame" x="0.0" y="74" width="49" height="32"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIS-QZ-bWS">
+                                                            <rect key="frame" x="0.0" y="90" width="50" height="40"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="aIS-QZ-bWS" secondAttribute="trailing" id="6jP-GP-7DH"/>
+                                                        <constraint firstAttribute="bottom" secondItem="aIS-QZ-bWS" secondAttribute="bottom" id="Nx7-26-som"/>
                                                         <constraint firstItem="2ed-Hb-bFN" firstAttribute="centerX" secondItem="uwV-H8-qLX" secondAttribute="centerX" id="YAU-rR-i8X"/>
                                                         <constraint firstItem="aIS-QZ-bWS" firstAttribute="centerX" secondItem="uwV-H8-qLX" secondAttribute="centerX" id="bIy-OS-pfQ"/>
+                                                        <constraint firstItem="aIS-QZ-bWS" firstAttribute="leading" secondItem="uwV-H8-qLX" secondAttribute="leading" id="jxd-Gq-Yhd"/>
+                                                        <constraint firstItem="aIS-QZ-bWS" firstAttribute="top" secondItem="2ed-Hb-bFN" secondAttribute="bottom" constant="5" id="zWt-5s-byL"/>
                                                         <constraint firstItem="k3x-ac-VaZ" firstAttribute="centerX" secondItem="uwV-H8-qLX" secondAttribute="centerX" id="zcb-p8-wdj"/>
                                                     </constraints>
                                                 </stackView>
@@ -103,7 +107,7 @@
                                                 <constraint firstItem="uwV-H8-qLX" firstAttribute="leading" secondItem="6ce-sv-2se" secondAttribute="leading" constant="8" id="uKO-8H-frg"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="65" height="122"/>
+                                        <size key="customSize" width="66" height="146"/>
                                         <connections>
                                             <outlet property="bottomLabel" destination="aIS-QZ-bWS" id="18d-zd-IMk"/>
                                             <outlet property="imageView" destination="2ed-Hb-bFN" id="5c6-jT-DK5"/>

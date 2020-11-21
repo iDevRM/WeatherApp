@@ -21,10 +21,10 @@ struct ID: Decodable {
     let id: Int
 }
 
-
+let date = Date()
 
 struct CellArray {
-    let hour       : String
+    var hour       : String 
     let id         : Int
     let temp       : Double
     

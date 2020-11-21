@@ -51,7 +51,12 @@ struct NetworkService {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherDataForCell.self, from: weatherData)
-            CellArray.array.append(CellArray(hour: "10:00", id: decodedData.hourly[0].weather[1].id, temp: decodedData.hourly[0].temp))
+            CellArray.array.removeAll()
+            CellArray.array.append(CellArray(hour: "10:00", id: decodedData.hourly[1].weather[0].id, temp: decodedData.hourly[1].temp))
+            CellArray.array.append(CellArray(hour: "12:00", id: decodedData.hourly[3].weather[0].id, temp: decodedData.hourly[3].temp))
+            CellArray.array.append(CellArray(hour: "2:00", id: decodedData.hourly[5].weather[0].id, temp: decodedData.hourly[5].temp))
+            CellArray.array.append(CellArray(hour: "4:00", id: decodedData.hourly[7].weather[0].id, temp: decodedData.hourly[7].temp))
+            CellArray.array.append(CellArray(hour: "6:00", id: decodedData.hourly[9].weather[0].id, temp: decodedData.hourly[9].temp))
         } catch {
             print(error)
         }
