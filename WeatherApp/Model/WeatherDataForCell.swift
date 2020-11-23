@@ -31,11 +31,6 @@ struct CellArray {
     static var array: [CellArray] = []
  }
 
-struct WeatherData: Decodable {
-    let weather: [Weather]
-    let main: Main
-    let name: String
-}
 
 
 
@@ -44,9 +39,7 @@ struct Main: Decodable {
     let temp: Double
 }
 
-struct Temp: Decodable {
-    let temp: Double
-}
+
 
 struct Hourly: Decodable {
     let temp: Double

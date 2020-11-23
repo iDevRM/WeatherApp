@@ -36,6 +36,7 @@ class WeatherVC: UIViewController {
         collectionView.dataSource = self
         
         setTime()
+        setWeather()
         
     }
     
@@ -48,6 +49,27 @@ class WeatherVC: UIViewController {
     func setTime() {
         dateFormatter.dateStyle = .medium
         todaysDateLabel.text = dateFormatter.string(from: Date())
+    }
+    
+    func setWeather() {
+        temperatureLabel.text = String(WeatherDataArray.array[0].temp)
+        locationLabel.text = WeatherDataArray.array[0].cityName
+        weatherLabel.text = WeatherDataArray.array[0].description
+        
+        switch WeatherDataArray.array[0].id {
+        case 200...232:
+            return imageView.image = WeatherImages.lighning
+                case 300...321,500...531:
+                    return imageView.image = WeatherImages.rainy
+                case 600...622:
+                    return imageView.image = WeatherImages.snow
+                case 800:
+                    return imageView.image = WeatherImages.sunny
+                case 801...804:
+                    return imageView.image = WeatherImages.sunAndCloud
+                default:
+                    return imageView.image = WeatherImages .cloudy
+        }
     }
     
 }
@@ -78,8 +100,9 @@ extension WeatherVC: CLLocationManagerDelegate {
         var lat : Double {
             return locations[0].coordinate.latitude
         }
-        
+        networkService.fetchWeather(lat: lat, long: long)
         networkService.fetchWeatherForCell(lat: lat, long: long)
+        setWeather()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

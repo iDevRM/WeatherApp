@@ -80,7 +80,7 @@
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIS-QZ-bWS">
                                                             <rect key="frame" x="0.0" y="90" width="50" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -138,7 +138,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="69P-9C-7Ux">
-                                <rect key="frame" x="121.66666666666667" y="124.33333333333334" width="170.66666666666663" height="68.333333333333343"/>
+                                <rect key="frame" x="121.66666666666667" y="113.33333333333334" width="170.66666666666663" height="68.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -154,7 +154,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tjQ-aq-NSW" secondAttribute="trailing" constant="150.33000000000001" id="6Sh-44-n8d"/>
-                            <constraint firstItem="69P-9C-7Ux" firstAttribute="top" secondItem="j9i-21-MFz" secondAttribute="bottom" constant="41" id="96o-6E-jgn"/>
+                            <constraint firstItem="69P-9C-7Ux" firstAttribute="top" secondItem="j9i-21-MFz" secondAttribute="bottom" constant="30" id="96o-6E-jgn"/>
                             <constraint firstItem="EiE-TX-BMT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="9to-V1-kpd"/>
                             <constraint firstItem="tjQ-aq-NSW" firstAttribute="top" secondItem="j9i-21-MFz" secondAttribute="bottom" constant="107.67" id="A4U-md-0Fh"/>
                             <constraint firstItem="2OR-cm-xS1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Crs-EK-UdB"/>

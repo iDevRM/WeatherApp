@@ -12,7 +12,6 @@ struct NetworkService {
     let URL_WeatherForCell = "https://api.openweathermap.org/data/2.5/onecall?units=imperial&appid=0f087dcd4dda0e949be5313b2b84ed7f"
     let URL_Weather = "https://api.openweathermap.org/data/2.5/weather?appid=0f087dcd4dda0e949be5313b2b84ed7f&units=imperial"
     
-    var removed = false
     
     func fetchWeatherForCell(lat: Double, long: Double) {
         let urlString = "\(URL_WeatherForCell)&lat=\(lat)&lon=\(long)"
@@ -35,9 +34,13 @@ struct NetworkService {
                     print(error!)
                     return
                 }
-                
+            
                 if let safeData = data {
-                    parseJSON(weatherData: safeData)
+                    if url.description.contains("onecall") {
+                        parseJSONForCell(weatherData: safeData)
+                    } else {
+                        parseJSON(weatherData: safeData)
+                    }
                 }
             }
             
@@ -47,7 +50,7 @@ struct NetworkService {
         }
     }
     
-    func parseJSON(weatherData: Data) {
+    func parseJSONForCell(weatherData: Data) {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherDataForCell.self, from: weatherData)
@@ -61,5 +64,16 @@ struct NetworkService {
             print(error)
         }
         
+    }
+    
+    func parseJSON(weatherData:Data) {
+        let decoder = JSONDecoder()
+        do {
+            let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
+            WeatherDataArray.array.removeAll()
+            WeatherDataArray.array.append(WeatherDataArray(cityName: decodedData.name, description: decodedData.weather[0].description, temp: decodedData.main.temp, id: decodedData.weather[0].id))
+        } catch {
+            print(error)
+        }
     }
 }
