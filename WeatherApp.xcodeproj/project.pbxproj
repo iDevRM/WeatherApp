@@ -145,8 +145,8 @@
 			children = (
 				1DD55877256700E5008F74DB /* WeatherDataForCell.swift */,
 				1DD5587D256712BF008F74DB /* WeatherImages.swift */,
-				1D2E93C9256838B40035AC84 /* NetworkService.swift */,
 				1D652EC2256C061100FC1D0A /* WeatherData.swift */,
+				1D2E93C9256838B40035AC84 /* NetworkService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

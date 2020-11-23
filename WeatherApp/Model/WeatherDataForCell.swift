@@ -20,26 +20,9 @@ struct Weather: Decodable {
 struct ID: Decodable {
     let id: Int
 }
-
-let date = Date()
-
-struct CellArray {
-    var hour       : String 
-    let id         : Int
-    let temp       : Double
-    
-    static var array: [CellArray] = []
- }
-
-
-
-
-
 struct Main: Decodable {
     let temp: Double
 }
-
-
 
 struct Hourly: Decodable {
     let temp: Double
@@ -47,7 +30,29 @@ struct Hourly: Decodable {
 
 struct Daily: Decodable {
     let temp: Max
+    let weather: [ID]
 }
 struct Max: Decodable {
     let max: Double
 }
+
+
+
+struct HourlyCellArray {
+    var hour       : String 
+    var id         : Int
+    var temp       : Double
+    
+    static var array: [HourlyCellArray] = []
+ }
+
+
+struct DailyCellArray {
+    var day: String
+    var id: Int
+    var temp: Double
+    
+    static var array: [DailyCellArray] = []
+}
+
+

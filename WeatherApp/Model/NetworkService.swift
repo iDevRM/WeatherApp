@@ -12,7 +12,12 @@ struct NetworkService {
     let URL_WeatherForCell = "https://api.openweathermap.org/data/2.5/onecall?units=imperial&appid=0f087dcd4dda0e949be5313b2b84ed7f"
     let URL_Weather = "https://api.openweathermap.org/data/2.5/weather?appid=0f087dcd4dda0e949be5313b2b84ed7f&units=imperial"
     
+    let date = Date()
+    let calendar = Calendar.current
     
+    
+
+        
     func fetchWeatherForCell(lat: Double, long: Double) {
         let urlString = "\(URL_WeatherForCell)&lat=\(lat)&lon=\(long)"
         performRequest(urlString: urlString)
@@ -36,8 +41,10 @@ struct NetworkService {
                 }
             
                 if let safeData = data {
-                    if url.description.contains("onecall") {
-                        parseJSONForCell(weatherData: safeData)
+                    if url.description.contains("onecall") && WeatherVC.dailyWeather == false {
+                        parseJSONForHourlyCell(weatherData: safeData)
+                    } else if url.description.contains("onecall") && WeatherVC.dailyWeather != false{
+                        parseJSONForDailyCell(weatherData: safeData)
                     } else {
                         parseJSON(weatherData: safeData)
                     }
@@ -50,16 +57,26 @@ struct NetworkService {
         }
     }
     
-    func parseJSONForCell(weatherData: Data) {
+    func parseJSONForHourlyCell(weatherData: Data) {
         let decoder = JSONDecoder()
+        let hour = calendar.component(.hour, from: date)
+        let minutes = calendar.component(.minute, from: date)
+        func correctHour(_ num: Int) -> Int {
+            if num  > 12 {
+                return num - 12
+            } else {
+                return num
+            }
+        }
         do {
             let decodedData = try decoder.decode(WeatherDataForCell.self, from: weatherData)
-            CellArray.array.removeAll()
-            CellArray.array.append(CellArray(hour: "10:00", id: decodedData.hourly[1].weather[0].id, temp: decodedData.hourly[1].temp))
-            CellArray.array.append(CellArray(hour: "12:00", id: decodedData.hourly[3].weather[0].id, temp: decodedData.hourly[3].temp))
-            CellArray.array.append(CellArray(hour: "2:00", id: decodedData.hourly[5].weather[0].id, temp: decodedData.hourly[5].temp))
-            CellArray.array.append(CellArray(hour: "4:00", id: decodedData.hourly[7].weather[0].id, temp: decodedData.hourly[7].temp))
-            CellArray.array.append(CellArray(hour: "6:00", id: decodedData.hourly[9].weather[0].id, temp: decodedData.hourly[9].temp))
+            HourlyCellArray.array.removeAll()
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 1)):\(minutes)", id: decodedData.hourly[1].weather[0].id, temp: decodedData.hourly[1].temp))
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 2)):\(minutes)", id: decodedData.hourly[2].weather[0].id, temp: decodedData.hourly[3].temp))
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 3)):\(minutes)", id: decodedData.hourly[3].weather[0].id, temp: decodedData.hourly[5].temp))
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 4)):\(minutes)", id: decodedData.hourly[4].weather[0].id, temp: decodedData.hourly[7].temp))
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 5)):\(minutes)", id: decodedData.hourly[5].weather[0].id, temp: decodedData.hourly[9].temp))
+            
         } catch {
             print(error)
         }
@@ -68,6 +85,7 @@ struct NetworkService {
     
     func parseJSON(weatherData:Data) {
         let decoder = JSONDecoder()
+        
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
             WeatherDataArray.array.removeAll()
@@ -76,4 +94,49 @@ struct NetworkService {
             print(error)
         }
     }
+    func parseJSONForDailyCell(weatherData: Data) {
+        let decoder = JSONDecoder()
+        let day = calendar.component(.weekday, from: date)
+        
+        func returnWeekday(_ day: Int) -> String {
+            var x = 0
+            if day > 7 {
+                x = day - 7
+            } else {
+                x = day
+            }
+            
+            switch x {
+            case 1:
+                return "Sun"
+            case 2:
+                return "Mon"
+            case 3:
+                return "Tue"
+            case 4:
+                return "Wed"
+            case 5:
+                return "Thu"
+            case 6:
+                return "Fri"
+            default:
+                return "Sat"
+            }
+        }
+        
+        do {
+            let decodedData = try decoder.decode(WeatherDataForCell.self, from: weatherData)
+            DailyCellArray.array.removeAll()
+            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 1), id: decodedData.daily[1].weather[0].id, temp: decodedData.daily[0].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 2), id: decodedData.daily[2].weather[0].id, temp: decodedData.daily[0].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 3), id: decodedData.daily[3].weather[0].id, temp: decodedData.daily[0].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 4), id: decodedData.daily[4].weather[0].id, temp: decodedData.daily[0].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 5), id: decodedData.daily[5].weather[0].id, temp: decodedData.daily[0].temp.max))
+        } catch {
+            print(error)
+        }
+        
+        
+    }
 }
+
