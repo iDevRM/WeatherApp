@@ -36,14 +36,14 @@ class WeatherVC: UIViewController {
         collectionView.dataSource = self
         
         setTime()
-        setWeather()
+        
         
     }
     
     @IBAction func refreshButtonTapped(_ sender: UIButton) {
         locationManager.requestLocation()
         collectionView.reloadData()
-        print(CellArray.array.count)
+       
     }
     
     func setTime() {
@@ -52,7 +52,8 @@ class WeatherVC: UIViewController {
     }
     
     func setWeather() {
-        temperatureLabel.text = String(WeatherDataArray.array[0].temp)
+        let temp = String(format: "%0.f", WeatherDataArray.array[0].temp)
+        temperatureLabel.text = "\(temp)°F"
         locationLabel.text = WeatherDataArray.array[0].cityName
         weatherLabel.text = WeatherDataArray.array[0].description
         

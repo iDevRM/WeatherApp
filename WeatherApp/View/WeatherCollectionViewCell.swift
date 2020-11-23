@@ -13,8 +13,9 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bottomLabel: UILabel!
     
     func updateCell(weatherData: CellArray) {
+        let temp = String(format: "%0.f", weatherData.temp)
         topLabel.text    = weatherData.hour
-        bottomLabel.text = "\(weatherData.temp) °F"
+        bottomLabel.text = "\(temp) °F"
         
         switch weatherData.id {
         case 200...232:

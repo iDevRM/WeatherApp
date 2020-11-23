@@ -29,5 +29,5 @@ struct WeatherDataArray {
     let id: Int
     
     
-    static var array: [WeatherDataArray] = [WeatherDataArray(cityName: "", description: "", temp: 80.0, id: 800)]
+    static var array: [WeatherDataArray] = [WeatherDataArray(cityName: "", description: "", temp: 80.0, id: 700)]
 }
