@@ -35,16 +35,14 @@ class WeatherVC: UIViewController {
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-        
-        
+
         setTime()
-        
-        
     }
     
     @IBAction func segmentedControlTapped(_ sender: UISegmentedControl) {
         WeatherVC.dailyWeather = !WeatherVC.dailyWeather
         locationManager.requestLocation()
+        collectionView.reloadData()
     }
     
     
@@ -62,7 +60,7 @@ class WeatherVC: UIViewController {
         let temp = String(format: "%0.f", WeatherDataArray.array[0].temp)
         temperatureLabel.text = "\(temp)°F"
         locationLabel.text = WeatherDataArray.array[0].cityName
-        weatherLabel.text = WeatherDataArray.array[0].description
+        weatherLabel.text = WeatherDataArray.array[0].description.capitalized
         
         switch WeatherDataArray.array[0].id {
         case 200...232:
@@ -80,6 +78,7 @@ class WeatherVC: UIViewController {
         }
     }
 }
+//MARK: - Collection View Data Source and Delegat methods
 
 extension WeatherVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -93,17 +92,15 @@ extension WeatherVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell {
-            if !WeatherVC.dailyWeather {
-                cell.updateHourlyCell(weatherData: HourlyCellArray.array[indexPath.row])
-            } else {
+            if WeatherVC.dailyWeather {
                 cell.updateDailyCell(weatherData: DailyCellArray.array[indexPath.row])
+            } else {
+                cell.updateHourlyCell(weatherData: HourlyCellArray.array[indexPath.row])
             }
             return cell
         }
         return UICollectionViewCell()
     }
-    
-    
 }
 
 //MARK: - CLLocationManagerDelegate
@@ -119,7 +116,6 @@ extension WeatherVC: CLLocationManagerDelegate {
         networkService.fetchWeather(lat: lat, long: long)
         networkService.fetchWeatherForCell(lat: lat, long: long)
         setAllLabels()
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

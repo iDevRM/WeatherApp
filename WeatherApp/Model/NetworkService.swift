@@ -16,8 +16,8 @@ struct NetworkService {
     let calendar = Calendar.current
     
     
-
-        
+    
+    
     func fetchWeatherForCell(lat: Double, long: Double) {
         let urlString = "\(URL_WeatherForCell)&lat=\(lat)&lon=\(long)"
         performRequest(urlString: urlString)
@@ -39,7 +39,7 @@ struct NetworkService {
                     print(error!)
                     return
                 }
-            
+                
                 if let safeData = data {
                     if url.description.contains("onecall") && WeatherVC.dailyWeather == false {
                         parseJSONForHourlyCell(weatherData: safeData)
@@ -72,15 +72,13 @@ struct NetworkService {
             let decodedData = try decoder.decode(WeatherDataForCell.self, from: weatherData)
             HourlyCellArray.array.removeAll()
             HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 1)):\(minutes)", id: decodedData.hourly[1].weather[0].id, temp: decodedData.hourly[1].temp))
-            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 2)):\(minutes)", id: decodedData.hourly[2].weather[0].id, temp: decodedData.hourly[3].temp))
-            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 3)):\(minutes)", id: decodedData.hourly[3].weather[0].id, temp: decodedData.hourly[5].temp))
-            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 4)):\(minutes)", id: decodedData.hourly[4].weather[0].id, temp: decodedData.hourly[7].temp))
-            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 5)):\(minutes)", id: decodedData.hourly[5].weather[0].id, temp: decodedData.hourly[9].temp))
-            
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 2)):\(minutes)", id: decodedData.hourly[2].weather[0].id, temp: decodedData.hourly[2].temp))
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 3)):\(minutes)", id: decodedData.hourly[3].weather[0].id, temp: decodedData.hourly[3].temp))
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 4)):\(minutes)", id: decodedData.hourly[4].weather[0].id, temp: decodedData.hourly[4].temp))
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 5)):\(minutes)", id: decodedData.hourly[5].weather[0].id, temp: decodedData.hourly[5].temp))
         } catch {
             print(error)
         }
-        
     }
     
     func parseJSON(weatherData:Data) {
@@ -127,16 +125,14 @@ struct NetworkService {
         do {
             let decodedData = try decoder.decode(WeatherDataForCell.self, from: weatherData)
             DailyCellArray.array.removeAll()
-            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 1), id: decodedData.daily[1].weather[0].id, temp: decodedData.daily[0].temp.max))
-            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 2), id: decodedData.daily[2].weather[0].id, temp: decodedData.daily[0].temp.max))
-            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 3), id: decodedData.daily[3].weather[0].id, temp: decodedData.daily[0].temp.max))
-            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 4), id: decodedData.daily[4].weather[0].id, temp: decodedData.daily[0].temp.max))
-            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 5), id: decodedData.daily[5].weather[0].id, temp: decodedData.daily[0].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 1), id: decodedData.daily[1].weather[0].id, temp: decodedData.daily[1].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 2), id: decodedData.daily[2].weather[0].id, temp: decodedData.daily[2].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 3), id: decodedData.daily[3].weather[0].id, temp: decodedData.daily[3].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 4), id: decodedData.daily[4].weather[0].id, temp: decodedData.daily[4].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 5), id: decodedData.daily[5].weather[0].id, temp: decodedData.daily[5].temp.max))
         } catch {
             print(error)
         }
-        
-        
     }
 }
 
