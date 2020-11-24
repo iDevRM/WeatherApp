@@ -6,7 +6,9 @@
 //
 
 import Foundation
-
+protocol DataIsParsed {
+    func finishedParsingData()
+}
 
 struct NetworkService {
     let URL_WeatherForCell = "https://api.openweathermap.org/data/2.5/onecall?units=imperial&appid=0f087dcd4dda0e949be5313b2b84ed7f"
@@ -14,9 +16,7 @@ struct NetworkService {
     
     let date = Date()
     let calendar = Calendar.current
-    
-    
-    
+    var delegate: DataIsParsed?
     
     func fetchWeatherForCell(lat: Double, long: Double) {
         let urlString = "\(URL_WeatherForCell)&lat=\(lat)&lon=\(long)"
@@ -59,8 +59,9 @@ struct NetworkService {
     
     func parseJSONForHourlyCell(weatherData: Data) {
         let decoder = JSONDecoder()
-        let hour = calendar.component(.hour, from: date)
+        let hour    = calendar.component(.hour, from: date)
         let minutes = calendar.component(.minute, from: date)
+        
         func correctHour(_ num: Int) -> Int {
             if num  > 12 {
                 return num - 12
@@ -68,14 +69,24 @@ struct NetworkService {
                 return num
             }
         }
+        
+        func correctMinutes(_ num:Int) -> String {
+            if num < 10 {
+                return "0\(num)"
+            } else {
+                return "\(num)"
+            }
+        }
+        
         do {
             let decodedData = try decoder.decode(WeatherDataForCell.self, from: weatherData)
             HourlyCellArray.array.removeAll()
-            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 1)):\(minutes)", id: decodedData.hourly[1].weather[0].id, temp: decodedData.hourly[1].temp))
-            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 2)):\(minutes)", id: decodedData.hourly[2].weather[0].id, temp: decodedData.hourly[2].temp))
-            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 3)):\(minutes)", id: decodedData.hourly[3].weather[0].id, temp: decodedData.hourly[3].temp))
-            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 4)):\(minutes)", id: decodedData.hourly[4].weather[0].id, temp: decodedData.hourly[4].temp))
-            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 5)):\(minutes)", id: decodedData.hourly[5].weather[0].id, temp: decodedData.hourly[5].temp))
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 1)):\(correctMinutes(minutes))", id: decodedData.hourly[1].weather[0].id, temp: decodedData.hourly[1].temp))
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 2)):\(correctMinutes(minutes))", id: decodedData.hourly[2].weather[0].id, temp: decodedData.hourly[2].temp))
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 3)):\(correctMinutes(minutes))", id: decodedData.hourly[3].weather[0].id, temp: decodedData.hourly[3].temp))
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 4)):\(correctMinutes(minutes))", id: decodedData.hourly[4].weather[0].id, temp: decodedData.hourly[4].temp))
+            HourlyCellArray.array.append(HourlyCellArray(hour: "\(correctHour(hour + 5)):\(correctMinutes(minutes))", id: decodedData.hourly[5].weather[0].id, temp: decodedData.hourly[5].temp))
+            delegate?.finishedParsingData()
         } catch {
             print(error)
         }
@@ -88,6 +99,7 @@ struct NetworkService {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
             WeatherDataArray.array.removeAll()
             WeatherDataArray.array.append(WeatherDataArray(cityName: decodedData.name, description: decodedData.weather[0].description, temp: decodedData.main.temp, id: decodedData.weather[0].id))
+            delegate?.finishedParsingData()
         } catch {
             print(error)
         }
@@ -96,7 +108,7 @@ struct NetworkService {
         let decoder = JSONDecoder()
         let day = calendar.component(.weekday, from: date)
         
-        func returnWeekday(_ day: Int) -> String {
+        func correctedWeekday(_ day: Int) -> String {
             var x = 0
             if day > 7 {
                 x = day - 7
@@ -125,14 +137,14 @@ struct NetworkService {
         do {
             let decodedData = try decoder.decode(WeatherDataForCell.self, from: weatherData)
             DailyCellArray.array.removeAll()
-            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 1), id: decodedData.daily[1].weather[0].id, temp: decodedData.daily[1].temp.max))
-            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 2), id: decodedData.daily[2].weather[0].id, temp: decodedData.daily[2].temp.max))
-            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 3), id: decodedData.daily[3].weather[0].id, temp: decodedData.daily[3].temp.max))
-            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 4), id: decodedData.daily[4].weather[0].id, temp: decodedData.daily[4].temp.max))
-            DailyCellArray.array.append(DailyCellArray(day: returnWeekday(day + 5), id: decodedData.daily[5].weather[0].id, temp: decodedData.daily[5].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: correctedWeekday(day + 1), id: decodedData.daily[1].weather[0].id, temp: decodedData.daily[1].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: correctedWeekday(day + 2), id: decodedData.daily[2].weather[0].id, temp: decodedData.daily[2].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: correctedWeekday(day + 3), id: decodedData.daily[3].weather[0].id, temp: decodedData.daily[3].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: correctedWeekday(day + 4), id: decodedData.daily[4].weather[0].id, temp: decodedData.daily[4].temp.max))
+            DailyCellArray.array.append(DailyCellArray(day: correctedWeekday(day + 5), id: decodedData.daily[5].weather[0].id, temp: decodedData.daily[5].temp.max))
+            delegate?.finishedParsingData()
         } catch {
             print(error)
         }
     }
 }
-

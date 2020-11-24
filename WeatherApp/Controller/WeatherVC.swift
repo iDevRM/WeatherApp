@@ -9,46 +9,44 @@ import UIKit
 import CoreLocation
 
 class WeatherVC: UIViewController {
-    @IBOutlet weak var todaysDateLabel:       UILabel!
-    @IBOutlet weak var locationLabel:         UILabel!
-    @IBOutlet weak var weatherLabel:          UILabel!
-    @IBOutlet weak var imageView:             UIImageView!
+    @IBOutlet weak var todaysDateLabel      : UILabel!
+    @IBOutlet weak var locationLabel        : UILabel!
+    @IBOutlet weak var weatherLabel         : UILabel!
+    @IBOutlet weak var imageView            : UIImageView!
     @IBOutlet weak var todayAndWeeklyControl: UISegmentedControl!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView       : UICollectionView!
     
-    @IBOutlet weak var refreshButton:         UIButton!
-    @IBOutlet weak var temperatureLabel:      UILabel!
-    
+    @IBOutlet weak var refreshButton   : UIButton!
+    @IBOutlet weak var temperatureLabel: UILabel!
     
     let dateFormatter   = DateFormatter()
-    let networkService  = NetworkService()
+    var networkService  = NetworkService()
     let locationManager = CLLocationManager()
     
     static var dailyWeather = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         collectionView.delegate   = self
         collectionView.dataSource = self
         locationManager.delegate  = self
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-
+        
         setTime()
+        
     }
     
     @IBAction func segmentedControlTapped(_ sender: UISegmentedControl) {
         WeatherVC.dailyWeather = !WeatherVC.dailyWeather
         locationManager.requestLocation()
-        collectionView.reloadData()
     }
     
     
     @IBAction func refreshButtonTapped(_ sender: UIButton) {
         locationManager.requestLocation()
-        collectionView.reloadData()
     }
     
     func setTime() {
@@ -65,16 +63,16 @@ class WeatherVC: UIViewController {
         switch WeatherDataArray.array[0].id {
         case 200...232:
             return imageView.image = WeatherImages.lighning
-                case 300...321,500...531:
-                    return imageView.image = WeatherImages.rainy
-                case 600...622:
-                    return imageView.image = WeatherImages.snow
-                case 800:
-                    return imageView.image = WeatherImages.sunny
-                case 801...804:
-                    return imageView.image = WeatherImages.sunAndCloud
-                default:
-                    return imageView.image = WeatherImages .cloudy
+        case 300...321,500...531:
+            return imageView.image = WeatherImages.rainy
+        case 600...622:
+            return imageView.image = WeatherImages.snow
+        case 800:
+            return imageView.image = WeatherImages.sunny
+        case 801...804:
+            return imageView.image = WeatherImages.sunAndCloud
+        default:
+            return imageView.image = WeatherImages .cloudy
         }
     }
 }
@@ -87,11 +85,11 @@ extension WeatherVC: UICollectionViewDataSource, UICollectionViewDelegate {
         } else {
             return DailyCellArray.array.count
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell {
+            
             if WeatherVC.dailyWeather {
                 cell.updateDailyCell(weatherData: DailyCellArray.array[indexPath.row])
             } else {
@@ -113,12 +111,25 @@ extension WeatherVC: CLLocationManagerDelegate {
         var lat : Double {
             return locations[0].coordinate.latitude
         }
+        networkService.delegate = self
         networkService.fetchWeather(lat: lat, long: long)
         networkService.fetchWeatherForCell(lat: lat, long: long)
-        setAllLabels()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-       
+        
     }
 }
+
+extension WeatherVC: DataIsParsed {
+    func finishedParsingData() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            self.setAllLabels()
+        }
+    }
+    
+    
+}
+
+
